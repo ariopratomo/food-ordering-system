@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             // order number format ABCddmmyyy-number
             $table->string('order_number');
             // table number data
-            $table->int('table_number');
+            $table->integer('table_number');
             // order status
             $table->string('status');
             // order total price

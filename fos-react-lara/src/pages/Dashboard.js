@@ -57,6 +57,15 @@ function Dashboard()
     })
   }
 
+  // function addFoodHandler asynchronously to navigate to add food page
+  const addFoodHandler = async () =>
+  {
+    // navigate to add food page
+    navigate('/add-food');
+  }
+
+    
+
   return (
     <div className="container" style={{ marginTop: "120px" }}>
       <nav class="navbar navbar-expand navbar-light bg-light">
@@ -67,8 +76,13 @@ function Dashboard()
       <div className="row justify-content-center">
         <div className="col-md-12">
           <div className="card border-0 rounded shadow-sm">
+            <div className="card-header">
+              <h3 className="mb-0">Foods</h3>
+              {/* button addFoodHandler float right */}
+              <button onClick={addFoodHandler} className="btn btn-sm btn-primary float-right">Add Food</button>
+
+            </div>
             <div className="card-body">
-              HALAMAN DASHBOARD
               {/* table data foods fetchFoods*/}
               <table className="table table-hover">
                 <thead>
@@ -82,18 +96,22 @@ function Dashboard()
                 </thead>
                 <tbody>
                   {
-                    foods.map((food, index) =>
-                      <tr key={index}>
-                        <th scope="row">{index + 1}</th>
-                        <td><img src={food.image} alt="" width="25"/> {food.name}</td>
-                        <td>{food.price}</td>
-                        <td>{food.category}</td>
-                        <td>
-                          <button className="btn btn-sm btn-warning">Edit</button>
-                          <button className="btn btn-sm btn-danger">Delete</button>
-                        </td>
-                      </tr>
-                    )
+                    // if foods length more than 0 then show data
+                    foods.length > 0 ? ( foods.map((food, index) => { 
+                      return (
+                        <tr key={index}>
+                          <th scope="row">{index + 1}</th>
+                          <td>{food.name}</td>
+                          <td>{food.price}</td>
+                          <td>{food.category}</td>
+                          <td>
+                            <button className="btn btn-sm btn-primary">Edit</button>
+                            <button className="btn btn-sm btn-danger">Delete</button>
+                          </td>
+                        </tr>
+                      )
+                    }) ) : ( <tr><td colSpan="5" className='text-center'>No Data</td></tr> )  
+
                   }
                 </tbody>
               </table>

@@ -17,7 +17,8 @@ class CreateOrderDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('food_id');
-            $table->unsignedBigInteger('quantity');
+            // field for quantity
+            $table->integer('quantity');
             $table->double('price');
             $table->timestamps();
         });
